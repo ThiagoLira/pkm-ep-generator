@@ -12,14 +12,10 @@ CORS(app)
 
 
 
-# @app.before_first_request
-# def before_first_request_func():
-    # generate_count = 0
-# 
-    # sess = gpt2.start_tf_sess(threads=1)
-    # gpt2.load_gpt2(sess)
-
-    # graph = tf.get_default_graph()
+generate_count = 0
+ 
+sess = gpt2.start_tf_sess(threads=1)
+gpt2.load_gpt2(sess)
 
 
 @app.route('/mock')
@@ -35,16 +31,8 @@ def mock_generate():
 @app.route('/',methods=['GET'])
 def generate():
 
-    # global generate_count
-    # global sess
-    # global graph
-
-    generate_count = 0
-
-    sess = gpt2.start_tf_sess(threads=1)
-    gpt2.load_gpt2(sess)
-
-    graph = tf.get_default_graph()
+    global generate_count
+    global sess
 
 
     callback = request.args.get('callback')
@@ -54,35 +42,33 @@ def generate():
         sample = "Pikachu and Ash"
 
 
-    with graph.as_default():
-        samples = gpt2.generate(sess,prefix =sample,return_as_list=True,length=256)
+    samples = gpt2.generate(sess,prefix =sample,return_as_list=True,length=256)
 
 
-        lst = re.split('\.',samples[0])
-       # remove last incomplete sentence (denoted by a period)
-        generated_text = '.'.join(lst[:-1]) + "."
+    lst = re.split('\.',samples[0])
+   # remove last incomplete sentence (denoted by a period)
+    generated_text = '.'.join(lst[:-1]) + "."
 
-        data = {
-            'sample_text' : generated_text
-        }
-
-
-
-        generate_count += 1
-
-        if generate_count == 8:
-            # Reload model to prevent Graph/Session from going OOM
-            tf.reset_default_graph()
-            sess.close()
-            sess = gpt2.start_tf_sess(threads=1)
-            gpt2.load_gpt2(sess)
-            graph = tf.get_default_graph()
-            generate_count = 0
-
-        gc.collect()
+    data = {
+        'sample_text' : generated_text
+    }
 
 
-        return '{0}({1})'.format(callback,data)
+    generate_count += 1
+
+    if generate_count == 8:
+        # Reload model to prevent Graph/Session from going OOM
+        tf.reset_default_graph()
+        sess.close()
+        sess = gpt2.start_tf_sess(threads=1)
+        gpt2.load_gpt2(sess)
+        graph = tf.get_default_graph()
+        generate_count = 0
+
+    gc.collect()
+
+
+    return '{0}({1})'.format(callback,data)
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
