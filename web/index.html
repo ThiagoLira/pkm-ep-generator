@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Pokémon Episode Summary Generator</title>
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <!-- partial:index.partial.html -->
+        <div id="text">  Ash and pikachu were... </div>
+        <h2> Type a start sentence for your episode: </h2>
+
+        <input placeholder="Ash and pikachu were..." type="text" id="prefix_text" />
+
+        <p><button id = "generator" onclick="callGeneratorAjax()" class="btn btn--stripe">Generate my Episode</button></p>
+        <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <!-- partial -->
+
+
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+        <script  src="./script.js"></script>
+
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    Made using <a href="https://github.com/minimaxir/gpt-2-simple" target="_blank"><strong>gpt-2-simple</strong></a>
+                    by <a href="http://thiagolira.blot.im/" target="_blank">Thiago Lira</a>. Original GPT-2 model provided by <a href="https://openai.com" target="_blank">OpenAI</a>.
+                </p>
+            </div>
+        </footer>
+    </body>
+</html>

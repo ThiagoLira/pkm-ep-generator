@@ -1,0 +1,6 @@
+flask
+flask-cors
+uwsgi
+tensorflow==1.14.0
+gpt-2-simple
+ujson

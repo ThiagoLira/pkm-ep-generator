@@ -1,0 +1,238 @@
+/* Martin Wolf CodePen Standard */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+* {
+  margin: 0;
+  padding: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 3em 2em;
+  font-family: 'Roboto';
+  color: #79BD9A;
+  display: flex;
+  justify-content: center;
+  background: #CFF09E;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* END Martin Wolf CodePen Standard */
+
+
+div#text {
+    border-style: solid;
+    color: #0B486B;
+    margin-bottom: 83px; 
+    padding: 24px;
+}
+
+h2 {
+  display: block;
+  /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-width: 200;
+  height: 40.2px;
+  /* Fallback for non-webkit */
+  margin: 0 auto;
+  font-size: 24px;
+  line-height: 1.4;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@keyframes stripe-slide {
+  0% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+.btn {
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  line-height: normal;
+  cursor: pointer;
+  -moz-user-select: text;
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 16px 36px 22px;
+  background-color: #CA3161;
+  color: #fff;
+  font-weight: bold;
+  border: 2px solid #CA3161;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  margin-top: 20px;
+  transition: all .5s ease;
+}
+.btn:-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+.btn--stripe {
+  overflow: hidden;
+  position: relative;
+}
+.btn--stripe:after {
+  content: '';
+  display: block;
+  height: 7px;
+  width: 100%;
+  background-image: repeating-linear-gradient(45deg, #FFF, #FFF 1px, transparent 2px, transparent 5px);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-top: 1px solid #666;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-size: 7px 7px;
+}
+.btn--stripe:hover {
+  background-color: #666;
+  color: #fff;
+  border-color: #000;
+}
+.btn--stripe:hover:after {
+  background-image: repeating-linear-gradient(45deg, #fff, #fff 1px, transparent 2px, transparent 5px);
+  border-top: 1px solid #000;
+  animation: stripe-slide 12s infinite linear forwards;
+}
+.btn--large {
+  width: 50%;
+}
+.btn--radius {
+  border-radius: 36px;
+}
+
+.lds-grid {
+  display: None;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+
+.lds-grid div {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #cf6824;
+  animation: lds-grid 1.2s linear infinite;
+}
+
+.lds-grid div:nth-child(1) {
+  top: 6px;
+  left: 6px;
+  animation-delay: 0s;
+}
+
+.lds-grid div:nth-child(2) {
+  top: 6px;
+  left: 26px;
+  animation-delay: -0.4s;
+}
+
+.lds-grid div:nth-child(3) {
+  top: 6px;
+  left: 45px;
+  animation-delay: -0.8s;
+}
+
+.lds-grid div:nth-child(4) {
+  top: 26px;
+  left: 6px;
+  animation-delay: -0.4s;
+}
+
+.lds-grid div:nth-child(5) {
+  top: 26px;
+  left: 26px;
+  animation-delay: -0.8s;
+}
+
+.lds-grid div:nth-child(6) {
+  top: 26px;
+  left: 45px;
+  animation-delay: -1.2s;
+}
+
+.lds-grid div:nth-child(7) {
+  top: 45px;
+  left: 6px;
+  animation-delay: -0.8s;
+}
+
+.lds-grid div:nth-child(8) {
+  top: 45px;
+  left: 26px;
+  animation-delay: -1.2s;
+}
+
+.lds-grid div:nth-child(9) {
+  top: 45px;
+  left: 45px;
+  animation-delay: -1.6s;
+}
+
+@keyframes lds-grid {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+
+.footer{
+    margin-top: 200px;
+    font-size: 16px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #0B486B;
+    color: white;
+    text-align: center;
+}
+
+
+a:link, a:visited, a:hover {
+
+    color: white;
+
+
+}
+
+
+/* ===== Input fields ===== */
+
+input{
+
+    display: block;
+    /* Fallback for non-webkit */
+    display: -webkit-box;
+    height: 40.2px;
+    width:100% ;
+    /* Fallback for non-webkit */
+    margin: 0 auto;
+    font-size: 24px;
+    line-height: 1.4;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #949597;
+
+}
