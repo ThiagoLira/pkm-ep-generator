@@ -23,8 +23,9 @@ function callGeneratorAjax(){
     $.ajax({
         method: 'GET',
         url: 'http://api.thiagolira.com.br:443/?sample=' + prefix,
-        // url: 'http://localhost:5000/?sample=' + prefix,  
+        // url: 'http://localhost:5000/?sample=' + prefix,
         dataType: 'jsonp', //change the datatype to 'jsonp' works in most cases
+        cache: false,
         success: (res) => {
 
             textbox.textContent = res.sample_text;
