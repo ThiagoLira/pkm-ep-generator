@@ -7,6 +7,21 @@ function displayLoader(loaderObj,display){
 }
 
 
+
+function formatText(text){
+
+
+    text = text.replace(/\s\.\s?/gm, ". ")
+    text = text.replace(/\s\,\s/gm, ", ")
+    text = text.replace( /(^|\. *)([a-z])/g, function(match, separator, char) {
+        return separator + char.toUpperCase();
+    })
+
+    return text
+}
+
+
+
 function callGeneratorAjax(){
 
 
@@ -23,11 +38,17 @@ function callGeneratorAjax(){
     $.ajax({
         method: 'GET',
         url: 'http://api.thiagolira.com.br:443/?sample=' + prefix,
-        // url: 'http://localhost:5000/?sample=' + prefix,  
+        // url: 'http://localhost:5000/?sample=' + prefix,
         dataType: 'jsonp', //change the datatype to 'jsonp' works in most cases
+        cache: false,
         success: (res) => {
 
-            textbox.textContent = res.sample_text;
+            textbox.textContent = formatText(res.sample_text);
+            displayLoader(loaders,"None")
+        },
+        error: (res) => {
+            console.log(res)
+            textbox.textContent = "Failed to load API"
             displayLoader(loaders,"None")
         }
     })
