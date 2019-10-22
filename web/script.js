@@ -7,6 +7,21 @@ function displayLoader(loaderObj,display){
 }
 
 
+
+function formatText(text){
+
+
+    text = text.replace(/\s\.\s?/gm, ". ")
+    text = text.replace(/\s\,\s/gm, ", ")
+    text = text.replace( /(^|\. *)([a-z])/g, function(match, separator, char) {
+        return separator + char.toUpperCase();
+    })
+
+    return text
+}
+
+
+
 function callGeneratorAjax(){
 
 
@@ -28,7 +43,7 @@ function callGeneratorAjax(){
         cache: false,
         success: (res) => {
 
-            textbox.textContent = res.sample_text;
+            textbox.textContent = formatText(res.sample_text);
             displayLoader(loaders,"None")
         },
         error: (res) => {
