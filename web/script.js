@@ -29,6 +29,11 @@ function callGeneratorAjax(){
 
             textbox.textContent = res.sample_text;
             displayLoader(loaders,"None")
+        },
+        error: (res) => {
+            console.log(res)
+            textbox.textContent = "Failed to load API"
+            displayLoader(loaders,"None")
         }
     })
 
