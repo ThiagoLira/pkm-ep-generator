@@ -39,9 +39,9 @@ def generate():
     sample = request.args.get('sample')
 
     if (not sample):
-        sample = "Pikachu and Ash"
+        sample = "Pikachu and Ash were"
 
-
+    
     samples = gpt2.generate(sess,prefix =sample,return_as_list=True,length=256)
 
 
