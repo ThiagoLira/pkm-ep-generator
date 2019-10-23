@@ -91,34 +91,21 @@ def replace_chars_ (text):
     return re.sub('(' + '|'.join(chars.keys()) + ')', replace_chars, text)
 
 
-puncts = [',', '.', '"', ':', ')', '(', '-', '!', '?', '|', ';', "'", '$', '&', '/', '[', ']', '>', '%', '=', '#', '*', '+', '\\', '•',  '~', '@', '£', 
- '·', '_', '{', '}', '©', '^', '®', '`',  '<', '→', '°', '€', '™', '›',  '♥', '←', '×', '§', '″', '′', 'Â', '█', '½', 'à', '…', 
- '“', '★', '”', '–', '●', 'â', '►', '−', '¢', '²', '¬', '░', '¶', '↑', '±', '¿', '▾', '═', '¦', '║', '―', '¥', '▓', '—', '‹', '─', 
- '▒', '：', '¼', '⊕', '▼', '▪', '†', '■', '’', '▀', '¨', '▄', '♫', '☆', 'é', '¯', '♦', '¤', '▲', 'è', '¸', '¾', 'Ã', '⋅', '‘', '∞', 
- '∙', '）', '↓', '、', '│', '（', '»', '，', '♪', '╩', '╚', '³', '・', '╦', '╣', '╔', '╗', '▬', '❤', 'ï', 'Ø', '¹', '≤', '‡', '√', ]
 
-def remove_puncts(s):
-    for punct in puncts:
-        if (punct in s):
-            s = s.replace(punct, ' <punct> ')
-    return s 
+
 
 corpus = ""
-val_corpus = ""
+
+
 for filename in os.listdir('data/pokeCorpusBulba'):
     if (filename in [ ".DS_Store", "train.txt", "val.txt"]):
         pass
     else:
         with open('data/pokeCorpusBulba/' + filename, "r",encoding='utf-8') as text_file:
 
-            clean_string = ' <begin> ' + (clean_text(replace_chars_(text_file.read())))+ ' <end> '
-            # one random episode is validation data
-            if (filename == 'DP003.txt'):
-                val_corpus+= clean_string
-            else:
-                corpus+= clean_string
+            clean_string =  (clean_text(replace_chars_(text_file.read())))
 
-with open('data/pokeCorpusBulba/' + 'val.txt', 'w') as text_file:
-        text_file.write(val_corpus)
+            corpus+= clean_string
+
 with open('data/pokeCorpusBulba/' + 'train.txt', 'w') as text_file:
         text_file.write(corpus)
