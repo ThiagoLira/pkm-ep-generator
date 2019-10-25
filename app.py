@@ -8,14 +8,10 @@ import re
 
 app = Flask(__name__)
 CORS(app)
+app.debug = True
 
 
 
-
-generate_count = 0
- 
-sess = gpt2.start_tf_sess(threads=1)
-gpt2.load_gpt2(sess)
 
 
 @app.route('/mock')
@@ -31,9 +27,9 @@ def mock_generate():
 @app.route('/',methods=['GET'])
 def generate():
 
-    global generate_count
-    global sess
-
+     
+    sess = gpt2.start_tf_sess(threads=1)
+    gpt2.load_gpt2(sess)
 
     callback = request.args.get('callback')
     sample = request.args.get('sample')
@@ -54,16 +50,6 @@ def generate():
     }
 
 
-    generate_count += 1
-
-    if generate_count == 8:
-        # Reload model to prevent Graph/Session from going OOM
-        tf.reset_default_graph()
-        sess.close()
-        sess = gpt2.start_tf_sess(threads=1)
-        gpt2.load_gpt2(sess)
-        graph = tf.get_default_graph()
-        generate_count = 0
 
     gc.collect()
 
@@ -71,4 +57,4 @@ def generate():
     return '{0}({1})'.format(callback,data)
 
 if __name__ == '__main__':
-    app.run(debug=True,host='0.0.0.0')
+    app.run(host='0.0.0.0')
