@@ -17,6 +17,9 @@ COPY nginx.conf /etc/nginx/
 COPY pokesite.conf /etc/nginx/conf.d/
 COPY supervisord.conf /etc/supervisor/
 
+RUN mkdir -p /var/log/uwsgi
+RUN chown -R nginx:nginx /var/log/uwsgi
+
 
 RUN pip3 --no-cache-dir install -r requirements.txt
 
