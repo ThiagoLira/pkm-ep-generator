@@ -1,6 +1,6 @@
 flask
 flask-cors
 uwsgi
-tensorflow==1.14.0
+tensorflow==2.7.2
 gpt-2-simple
 ujson
